@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appone
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appone
+  template:
+    metadata:
+      labels:
+        app: appone
+    spec:
+      containers:
+      - image: appone:v1
+        imagePullPolicy: IfNotPresent
+        name: appone
+        envFrom:
+          - secretRef:
+              name: appone-secret
+          - configMapRef:
+              name: appone-configmap

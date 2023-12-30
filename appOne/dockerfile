@@ -1,0 +1,22 @@
+# Build
+FROM node:18-alpine
+
+RUN apk add --no-cache tzdata && \
+    cp -fv /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
+    echo "America/Sao_Paulo" > /etc/timezone && \
+    apk del tzdata
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install app dependencies
+RUN npm install
+
+# Bundle your app source
+COPY . .
+
+# Define the command to run your app
+CMD ["node", "src/index.js"]

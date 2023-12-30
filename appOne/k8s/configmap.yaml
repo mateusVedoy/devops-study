@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appone-configmap
+  namespace: default
+data:
+  HELLO_MESSAGE: "HI FROM K8S POD"
+  PORT: "8080"

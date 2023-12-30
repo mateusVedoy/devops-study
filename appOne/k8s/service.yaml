@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: appone-svc
+  name: appone-svc
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector: ## indicate to which deployment the service belongs to
+    app: appone
